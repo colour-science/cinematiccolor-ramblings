@@ -306,6 +306,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#cie-xyy-colorspace" title="CIE xyY Colorspace" class="md-nav__link">
+    CIE xyY Colorspace
+  </a>
+  
+</li>
+      
       
       
       
@@ -354,6 +361,13 @@
         <li class="md-nav__item">
   <a href="#cie-xyz-colorspace" title="CIE XYZ Colorspace" class="md-nav__link">
     CIE XYZ Colorspace
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cie-xyy-colorspace" title="CIE xyY Colorspace" class="md-nav__link">
+    CIE xyY Colorspace
   </a>
   
 </li>
@@ -452,6 +466,15 @@ surface.</p>
 </code></pre>
 
 <p>And so forth until all the bins are equal to 1.</p>
+<h2 id="cie-xyy-colorspace">CIE xyY Colorspace</h2>
+<p>The <em>CIE xyY colorspace</em> is the result of a projective transformation of the
+<em>CIE XYZ colorspace</em> in order to separate <em>Luminance</em> from <em>Chroma</em>.</p>
+<div class="container">
+    <div id="gamutView3" class="colourAnalysisView item"></div>
+</div>
+
+<p><em>The Spectral Locus and Visible Gamut plotted in the CIE xyY colorspace, note
+how from the initial view angle the remarkable horseshoe shape starts to show.</em></p>
 <script src="https://cdn.rawgit.com/mrdoob/three.js/master/build/three.min.js"></script>
 
 <script src="https://cdn.rawgit.com/mrdoob/three.js/master/examples/js/controls/OrbitControls.js"></script>
@@ -479,20 +502,15 @@ surface.</p>
             },
     }
 
-    var image = 'Rose.ProPhoto.jpg';
     var primaryColourspace = 'sRGB';
-    var secondaryColourspace = 'DCI-P3';
-    var imageColourspace = 'Primary';
-    var colourspaceModel = 'CIE XYZ';
 
+    // CIE 1931 2° Standard Observer - Color Matching Functions
+    var colourspaceModel = 'CIE XYZ';
     var gamutView1 = new ColourAnalysis.GamutView(
         document.getElementById('gamutView1'),
         {
             ...{
-                image: image,
                 primaryColourspace: primaryColourspace,
-                secondaryColourspace: secondaryColourspace,
-                imageColourspace: imageColourspace,
                 colourspaceModel: colourspaceModel,
             },
             ...gamutViewSettings
@@ -502,6 +520,7 @@ surface.</p>
     gamutView1.addSpectralLocusVisual();
     gamutView1.animate();
 
+    // CIE XYZ Colorspace
     var gamutViewSettings = {
         ...gamutViewSettings,
         ...{
@@ -514,10 +533,7 @@ surface.</p>
         document.getElementById('gamutView2'),
         {
             ...{
-                image: image,
                 primaryColourspace: primaryColourspace,
-                secondaryColourspace: secondaryColourspace,
-                imageColourspace: imageColourspace,
                 colourspaceModel: colourspaceModel,
             },
             ...gamutViewSettings
@@ -527,6 +543,32 @@ surface.</p>
     gamutView2.addSpectralLocusVisual();
     gamutView2.addVisibleSpectrumVisual();
     gamutView2.animate();
+
+    // CIE xyY Colorspace
+    var colourspaceModel = 'CIE xyY';
+    var gamutViewSettings = {
+        ...gamutViewSettings,
+        ...{
+                camera: {
+                    fov: 27.5,
+                    position: { x: 0.0, y: 3.5, z: 1 / 3 },
+                }
+        }
+    }
+    var gamutView3 = new ColourAnalysis.GamutView(
+        document.getElementById('gamutView3'),
+        {
+            ...{
+                primaryColourspace: primaryColourspace,
+                colourspaceModel: colourspaceModel,
+            },
+            ...gamutViewSettings
+        }
+    );
+    gamutView3.addViewAxesVisual();
+    gamutView3.addSpectralLocusVisual();
+    gamutView3.addVisibleSpectrumVisual();
+    gamutView3.animate();
 </script>
                 
                   
