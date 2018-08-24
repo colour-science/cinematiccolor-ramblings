@@ -1,0 +1,30 @@
+# Project Information
+site_name: 'Cinematic Color 2'
+site_url: 'http://cinematiccolor.org/'
+site_description: 'Motion-Picture Color Management'
+site_author: 'Cinematic Color 2 Authors'
+
+# Repository
+repo_name: 'colour-science/cinematiccolor'
+repo_url: 'https://github.com/colour-science/cinematiccolor'
+
+# Copyright
+copyright: 'Copyright &copy; 2018 - <a href="mailto:ves-tech-color@googlegroups.com">Cinematic Color Authors</a>'
+
+# Content
+pages:
+  - 'Motion-Picture Color Management': 'index.md'
+  - 'Exploring Colorspaces': 'exploring-colorspaces.md'
+
+# Theme
+theme:
+  name: 'material'
+  palette:
+    primary: 'white'
+    accent: 'indigo'
+
+# Social
+extra:
+  social:
+    - type: 'github'
+      link: 'https://github.com/colour-science/cinematiccolor'
