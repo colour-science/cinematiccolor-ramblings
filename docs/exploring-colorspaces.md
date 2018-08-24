@@ -92,6 +92,18 @@ The third one:
 
 And so forth until all the bins are equal to 1.
 
+## CIE xyY Colorspace
+
+The *CIE xyY colorspace* is the result of a projective transformation of the
+*CIE XYZ colorspace* in order to separate *Luminance* from *Chroma*.
+
+<div class="container">
+    <div id="gamutView3" class="colourAnalysisView item"></div>
+</div>
+
+_The Spectral Locus and Visible Gamut plotted in the CIE xyY colorspace, note
+how from the initial view angle the remarkable horseshoe shape starts to show._
+
 <script src="https://cdn.rawgit.com/mrdoob/three.js/master/build/three.min.js"></script>
 <script src="https://cdn.rawgit.com/mrdoob/three.js/master/examples/js/controls/OrbitControls.js"></script>
 <script src="https://cdn.rawgit.com/mrdoob/three.js/master/examples/js/controls/TrackballControls.js"></script>
@@ -115,20 +127,15 @@ And so forth until all the bins are equal to 1.
             },
     }
 
-    var image = 'Rose.ProPhoto.jpg';
     var primaryColourspace = 'sRGB';
-    var secondaryColourspace = 'DCI-P3';
-    var imageColourspace = 'Primary';
-    var colourspaceModel = 'CIE XYZ';
 
+    // CIE 1931 2° Standard Observer - Color Matching Functions
+    var colourspaceModel = 'CIE XYZ';
     var gamutView1 = new ColourAnalysis.GamutView(
         document.getElementById('gamutView1'),
         {
             ...{
-                image: image,
                 primaryColourspace: primaryColourspace,
-                secondaryColourspace: secondaryColourspace,
-                imageColourspace: imageColourspace,
                 colourspaceModel: colourspaceModel,
             },
             ...gamutViewSettings
@@ -138,6 +145,7 @@ And so forth until all the bins are equal to 1.
     gamutView1.addSpectralLocusVisual();
     gamutView1.animate();
 
+    // CIE XYZ Colorspace
     var gamutViewSettings = {
         ...gamutViewSettings,
         ...{
@@ -150,10 +158,7 @@ And so forth until all the bins are equal to 1.
         document.getElementById('gamutView2'),
         {
             ...{
-                image: image,
                 primaryColourspace: primaryColourspace,
-                secondaryColourspace: secondaryColourspace,
-                imageColourspace: imageColourspace,
                 colourspaceModel: colourspaceModel,
             },
             ...gamutViewSettings
@@ -163,4 +168,30 @@ And so forth until all the bins are equal to 1.
     gamutView2.addSpectralLocusVisual();
     gamutView2.addVisibleSpectrumVisual();
     gamutView2.animate();
+
+    // CIE xyY Colorspace
+    var colourspaceModel = 'CIE xyY';
+    var gamutViewSettings = {
+        ...gamutViewSettings,
+        ...{
+                camera: {
+                    fov: 27.5,
+                    position: { x: 0.0, y: 3.5, z: 1 / 3 },
+                }
+        }
+    }
+    var gamutView3 = new ColourAnalysis.GamutView(
+        document.getElementById('gamutView3'),
+        {
+            ...{
+                primaryColourspace: primaryColourspace,
+                colourspaceModel: colourspaceModel,
+            },
+            ...gamutViewSettings
+        }
+    );
+    gamutView3.addViewAxesVisual();
+    gamutView3.addSpectralLocusVisual();
+    gamutView3.addVisibleSpectrumVisual();
+    gamutView3.animate();
 </script>
