@@ -36,7 +36,7 @@ called the *Spectral Locus*.
     <div id="gamutView1" class="colourAnalysisView item"></div>
 </div>
 
-_The Spectral Locus plotted in the CIE XYZ Colorspace._
+__The Spectral Locus plotted in the CIE XYZ Colorspace.__
 
 ## CIE XYZ Colorspace
 
@@ -49,10 +49,10 @@ data.
     <div id="gamutView2" class="colourAnalysisView item"></div>
 </div>
 
-_The Visible Gamut plotted in the CIE XYZ Colorspace._
+__The Visible Gamut plotted in the CIE XYZ Colorspace.__
 
 It is surprising to observe that the *Visible Gamut* does not actually reach
-the *Spectral Locus* but it is a direct consequence of the integration
+the *Spectral Locus*: it is a direct consequence of the integration
 of light with the *CIE 1931 2° Standard Observer*.
 
 The *Visible Gamut* is constructed by converting a set of spectral pulses
@@ -101,8 +101,18 @@ The *CIE xyY colorspace* is the result of a projective transformation of the
     <div id="gamutView3" class="colourAnalysisView item"></div>
 </div>
 
-_The Spectral Locus and Visible Gamut plotted in the CIE xyY colorspace, note
-how from the initial view angle the remarkable horseshoe shape starts to show._
+__The Spectral Locus and Visible Gamut plotted in the CIE xyY colorspace, note
+how from the initial view angle the familiar horseshoe shape starts to show.__
+
+## Additive RGB Colorspaces
+
+While commonly represented as triangles on a *Chromaticity Diagram,* RGB colorspace gamuts are actual 3D volumes in the *CIE xyY colorspace*.
+
+<div class="container">
+    <div id="gamutView4" class="colourAnalysisView item"></div>
+</div>
+
+__The sRGB colourspace gamut plotted in the CIE xyY colorspace.__
 
 <script src="https://cdn.rawgit.com/mrdoob/three.js/master/build/three.min.js"></script>
 <script src="https://cdn.rawgit.com/mrdoob/three.js/master/examples/js/controls/OrbitControls.js"></script>
@@ -150,7 +160,7 @@ how from the initial view angle the remarkable horseshoe shape starts to show._
         ...gamutViewSettings,
         ...{
                 camera: {
-                    position: { x: -0.5, y: 1.0, z: 2.0 },
+                    position: { x: -0.5, y: 1, z: 2 },
                 }
         }
     }
@@ -176,7 +186,7 @@ how from the initial view angle the remarkable horseshoe shape starts to show._
         ...{
                 camera: {
                     fov: 27.5,
-                    position: { x: 0.0, y: 3.5, z: 1 / 3 },
+                    position: { x: 0, y: 3.5, z: 1 / 3 },
                 }
         }
     }
@@ -194,4 +204,34 @@ how from the initial view angle the remarkable horseshoe shape starts to show._
     gamutView3.addSpectralLocusVisual();
     gamutView3.addVisibleSpectrumVisual();
     gamutView3.animate();
+
+    // Additive RGB Colorspaces
+    var colourspaceModel = 'CIE xyY';
+    var gamutViewSettings = {
+        ...gamutViewSettings,
+        ...{
+                camera: {
+                    fov: 27.5,
+                    position: { x: -2, y: 2, z: 1 },
+                }
+        }
+    }
+    var gamutView4 = new ColourAnalysis.GamutView(
+        document.getElementById('gamutView4'),
+        {
+            ...{
+                primaryColourspace: primaryColourspace,
+                colourspaceModel: colourspaceModel,
+            },
+            ...gamutViewSettings
+        }
+    );
+    gamutView4.addViewAxesVisual();
+    gamutView4.addSpectralLocusVisual();
+    gamutView4.addPrimaryColourspaceVisual(
+        {
+            uniformOpacity: 0.85
+        }
+    );
+    gamutView4.animate();
 </script>

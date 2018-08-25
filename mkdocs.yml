@@ -19,9 +19,14 @@ pages:
 # Theme
 theme:
   name: 'material'
+  custom_dir: 'theme'
   palette:
     primary: 'white'
     accent: 'indigo'
+
+# Style
+extra_css:
+  - 'stylesheets/extra.css'
 
 # Social
 extra:
