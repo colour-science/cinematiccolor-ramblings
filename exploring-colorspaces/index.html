@@ -68,6 +68,8 @@
     
     <link rel="stylesheet" href="../assets/fonts/material-icons.css">
     
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
     
   </head>
   
@@ -313,6 +315,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#additive-rgb-colorspaces" title="Additive RGB Colorspaces" class="md-nav__link">
+    Additive RGB Colorspaces
+  </a>
+  
+</li>
+      
       
       
       
@@ -372,6 +381,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#additive-rgb-colorspaces" title="Additive RGB Colorspaces" class="md-nav__link">
+    Additive RGB Colorspaces
+  </a>
+  
+</li>
+      
       
       
       
@@ -423,7 +439,7 @@ called the <em>Spectral Locus</em>.</p>
     <div id="gamutView1" class="colourAnalysisView item"></div>
 </div>
 
-<p><em>The Spectral Locus plotted in the CIE XYZ Colorspace.</em></p>
+<p><strong>The Spectral Locus plotted in the CIE XYZ Colorspace.</strong></p>
 <h2 id="cie-xyz-colorspace">CIE XYZ Colorspace</h2>
 <p>The <em>Visible Gamut</em> represents all the colors a <em>Standard Observer</em> can see.
 Colors are often represented as <em>xy</em> <em>Chromaticity Coordinates</em> on a
@@ -433,9 +449,9 @@ data.</p>
     <div id="gamutView2" class="colourAnalysisView item"></div>
 </div>
 
-<p><em>The Visible Gamut plotted in the CIE XYZ Colorspace.</em></p>
+<p><strong>The Visible Gamut plotted in the CIE XYZ Colorspace.</strong></p>
 <p>It is surprising to observe that the <em>Visible Gamut</em> does not actually reach
-the <em>Spectral Locus</em> but it is a direct consequence of the integration
+the <em>Spectral Locus</em>: it is a direct consequence of the integration
 of light with the <em>CIE 1931 2° Standard Observer</em>.</p>
 <p>The <em>Visible Gamut</em> is constructed by converting a set of spectral pulses
 to tristimulus values. Those spectral pulses are slices of
@@ -473,8 +489,15 @@ surface.</p>
     <div id="gamutView3" class="colourAnalysisView item"></div>
 </div>
 
-<p><em>The Spectral Locus and Visible Gamut plotted in the CIE xyY colorspace, note
-how from the initial view angle the remarkable horseshoe shape starts to show.</em></p>
+<p><strong>The Spectral Locus and Visible Gamut plotted in the CIE xyY colorspace, note
+how from the initial view angle the familiar horseshoe shape starts to show.</strong></p>
+<h2 id="additive-rgb-colorspaces">Additive RGB Colorspaces</h2>
+<p>While commonly represented as triangles on a <em>Chromaticity Diagram,</em> RGB colorspace gamuts are actual 3D volumes in the <em>CIE xyY colorspace</em>.</p>
+<div class="container">
+    <div id="gamutView4" class="colourAnalysisView item"></div>
+</div>
+
+<p><strong>The sRGB colourspace gamut plotted in the CIE xyY colorspace.</strong></p>
 <script src="https://cdn.rawgit.com/mrdoob/three.js/master/build/three.min.js"></script>
 
 <script src="https://cdn.rawgit.com/mrdoob/three.js/master/examples/js/controls/OrbitControls.js"></script>
@@ -525,7 +548,7 @@ how from the initial view angle the remarkable horseshoe shape starts to show.</
         ...gamutViewSettings,
         ...{
                 camera: {
-                    position: { x: -0.5, y: 1.0, z: 2.0 },
+                    position: { x: -0.5, y: 1, z: 2 },
                 }
         }
     }
@@ -551,7 +574,7 @@ how from the initial view angle the remarkable horseshoe shape starts to show.</
         ...{
                 camera: {
                     fov: 27.5,
-                    position: { x: 0.0, y: 3.5, z: 1 / 3 },
+                    position: { x: 0, y: 3.5, z: 1 / 3 },
                 }
         }
     }
@@ -569,6 +592,36 @@ how from the initial view angle the remarkable horseshoe shape starts to show.</
     gamutView3.addSpectralLocusVisual();
     gamutView3.addVisibleSpectrumVisual();
     gamutView3.animate();
+
+    // Additive RGB Colorspaces
+    var colourspaceModel = 'CIE xyY';
+    var gamutViewSettings = {
+        ...gamutViewSettings,
+        ...{
+                camera: {
+                    fov: 27.5,
+                    position: { x: -2, y: 2, z: 1 },
+                }
+        }
+    }
+    var gamutView4 = new ColourAnalysis.GamutView(
+        document.getElementById('gamutView4'),
+        {
+            ...{
+                primaryColourspace: primaryColourspace,
+                colourspaceModel: colourspaceModel,
+            },
+            ...gamutViewSettings
+        }
+    );
+    gamutView4.addViewAxesVisual();
+    gamutView4.addSpectralLocusVisual();
+    gamutView4.addPrimaryColourspaceVisual(
+        {
+            uniformOpacity: 0.85
+        }
+    );
+    gamutView4.animate();
 </script>
                 
                   
@@ -584,17 +637,50 @@ how from the initial view angle the remarkable horseshoe shape starts to show.</
         </div>
       </main>
       
-        
+        <!--
+  Copyright (c) 2016-2018 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+
+
+<!-- Application footer -->
 <footer class="md-footer">
+
+  <!-- Link to previous and/or next page -->
   
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
+
+        <!-- Link to previous page -->
         
-          <a href=".." title="Motion-Picture Color Management" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href=".."
+              title="Motion-Picture Color Management"
+              class="md-flex md-footer-nav__link md-footer-nav__link--prev"
+              rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+              <i class="md-icon md-icon--arrow-back
+                    md-footer-nav__button"></i>
             </div>
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+            <div class="md-flex__cell md-flex__cell--stretch
+                  md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Previous
@@ -604,24 +690,27 @@ how from the initial view angle the remarkable horseshoe shape starts to show.</
             </div>
           </a>
         
+
+        <!-- Link to next page -->
         
       </nav>
     </div>
   
+
+  <!-- Further information -->
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
+
+      <!-- Copyright and theme information -->
       <div class="md-footer-copyright">
         
           <div class="md-footer-copyright__highlight">
             Copyright &copy; 2018 - <a href="mailto:ves-tech-color@googlegroups.com">Cinematic Color Authors</a>
           </div>
         
-        powered by
-        <a href="https://www.mkdocs.org">MkDocs</a>
-        and
-        <a href="https://squidfunk.github.io/mkdocs-material/">
-          Material for MkDocs</a>
       </div>
+
+      <!-- Social links -->
       
         
   <div class="md-footer-social">
