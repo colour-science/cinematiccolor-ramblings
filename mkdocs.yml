@@ -23,10 +23,13 @@ theme:
   palette:
     primary: 'white'
     accent: 'indigo'
+  logo: 'assets/images/favicon.png'
+  favicon: 'assets/images/favicon.ico'
 
 # Style
+# https://favicon.io/favicon-generator/?t=CC%C2%B2&ff=Roboto&fs=65&fc=%23FFFFFF&b=rounded&bc=%23000
 extra_css:
-  - 'stylesheets/extra.css'
+  - 'assets/stylesheets/extra.css'
 
 # Social
 extra:

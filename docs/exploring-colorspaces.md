@@ -36,7 +36,7 @@ called the *Spectral Locus*.
     <div id="gamutView1" class="colourAnalysisView item"></div>
 </div>
 
-__The Spectral Locus plotted in the CIE XYZ Colorspace.__
+###### The Spectral Locus plotted in the CIE XYZ Colorspace.
 
 ## CIE XYZ Colorspace
 
@@ -49,7 +49,7 @@ data.
     <div id="gamutView2" class="colourAnalysisView item"></div>
 </div>
 
-__The Visible Gamut plotted in the CIE XYZ Colorspace.__
+###### The Visible Gamut plotted in the CIE XYZ Colorspace.
 
 It is surprising to observe that the *Visible Gamut* does not actually reach
 the *Spectral Locus*: it is a direct consequence of the integration
@@ -101,8 +101,7 @@ The *CIE xyY colorspace* is the result of a projective transformation of the
     <div id="gamutView3" class="colourAnalysisView item"></div>
 </div>
 
-__The Spectral Locus and Visible Gamut plotted in the CIE xyY colorspace, note
-how from the initial view angle the familiar horseshoe shape starts to show.__
+###### The Spectral Locus and Visible Gamut plotted in the CIE xyY colorspace, note how from the initial view angle the familiar horseshoe shape starts to show.
 
 ## Additive RGB Colorspaces
 
@@ -112,7 +111,7 @@ While commonly represented as triangles on a *Chromaticity Diagram,* RGB colorsp
     <div id="gamutView4" class="colourAnalysisView item"></div>
 </div>
 
-__The sRGB colourspace gamut plotted in the CIE xyY colorspace.__
+###### The sRGB colourspace gamut plotted in the CIE xyY colorspace.
 
 <script src="https://cdn.rawgit.com/mrdoob/three.js/master/build/three.min.js"></script>
 <script src="https://cdn.rawgit.com/mrdoob/three.js/master/examples/js/controls/OrbitControls.js"></script>
